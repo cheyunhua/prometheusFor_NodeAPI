@@ -1,0 +1,30 @@
+[Mail]
+Host = "smtp.exmail.qq.com"
+User = "xxx@sicpay.com"
+Port = 465
+From = "xxx@sicpay.com"
+Pwd = "xxx@123"
+To = "xxx@139.com"
+RTo = "xxx@qq.com"
+IsSsl = true
+[Job]
+JobName = ["Centos6-host","host-node"]
+[CronTime]
+CronStart = "*/20 * * * * *"
+[Url]
+ApiUrl = "http://192.168.100.103:9090"
+#时间戳
+#var StartTime = time.Now().Unix()
+
+# var StartTime = time.Now().Add(-time.Hour * time.Duration(7*24)).Unix()
+#var EndTime = time.Now().Unix()
+
+#7 天前
+#var EndTime = time.Now().Add(-time.Hour * time.Duration(7*24)).Unix()
+#[FetchTime]
+#StartTime = 1668152193
+#EndTime = 1668152193
+
+
+
+
