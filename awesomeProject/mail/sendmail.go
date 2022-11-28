@@ -1,6 +1,7 @@
 package mailX
 
 import (
+	"awesomeProject/logger"
 	"awesomeProject/mode"
 	"crypto/tls"
 	"fmt"
@@ -27,7 +28,7 @@ func SendX() {
 	nd := gomail.NewDialer(model.C.Mail.Host, model.C.Mail.Port, model.C.Mail.User, model.C.Mail.Pwd)
 	nd.TLSConfig = &tls.Config{InsecureSkipVerify: model.C.Mail.IsSsl}
 	if err := nd.DialAndSend(nm); err != nil {
-		fmt.Println("************发送邮件出错:*************", err)
+		logger.DefaultLogger.Error(err)
 	} else {
 		fmt.Println("******************发送附件邮件成功*****************")
 		fmt.Println("***************邮件服务器:smtp.qq.com******************")
@@ -35,7 +36,7 @@ func SendX() {
 		fmt.Println("************邮件收件人:************")
 		fmt.Println("************邮件主题:************")
 		fmt.Println("************邮件内容:************")
-		fmt.Println("邮件附件:")
+		logger.DefaultLogger.Info(err)
 
 	}
 }

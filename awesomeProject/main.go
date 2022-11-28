@@ -10,6 +10,7 @@ import (
 	"github.com/BurntSushi/toml"
 	"github.com/xuri/excelize/v2"
 	"strconv"
+	"sync"
 )
 
 func init() {
@@ -21,6 +22,7 @@ func init() {
 	if err != nil {
 		fmt.Println(err)
 	}
+
 }
 
 func CreateXlS(up, cpu, mem, disk, netEs, netTW, DwRite, Dread, NetU, NetD []string, fileName string) {
@@ -157,9 +159,16 @@ func PasteData(jobs ...string) {
 
 }
 func main() {
+	var sy sync.WaitGroup
+	sy.Add(1)
+	go func() {
+		defer sy.Done()
+		PasteData(model.C.Job.JobName...)
 
-	PasteData(model.C.Job.JobName...)
-	fmt.Println("start is OK")
+	}()
+
+	sy.Wait()
+
 	utils.NewCrond(model.C.CronTime.CronStart, mailX.SendX)
 
 }

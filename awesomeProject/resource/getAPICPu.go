@@ -1,6 +1,7 @@
 package resource
 
 import (
+	"awesomeProject/logger"
 	model "awesomeProject/mode"
 	"errors"
 	"fmt"
@@ -11,15 +12,15 @@ import (
 )
 
 func GetCUrl(url string) ([]byte, error) {
-	var logger = log.Default()
+
 	resp, err := http.Get(url)
 	if err != nil {
-		logger.Printf("get请求失败 error: %+v", err)
+		logger.DefaultLogger.Errorf("get请求失败 error: %+v", err)
 	}
 	defer resp.Body.Close()
 	body, err1 := ioutil.ReadAll(resp.Body)
 	if err1 != nil {
-		logger.Printf("读取Body失败 error: %+v", err)
+		logger.DefaultLogger.Errorf("读取Body失败 error: %+v", err)
 
 	}
 

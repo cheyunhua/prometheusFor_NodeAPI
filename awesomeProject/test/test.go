@@ -1,16 +1,16 @@
 package main
 
 import (
+	"awesomeProject/logger"
 	"bytes"
 	"encoding/json"
 	"io/ioutil"
-	"log"
 	"net/http"
 	"time"
 )
 
 func main() {
-	var loggers = log.Default()
+
 	//ch := make(chan os.Signal, 1)
 	//signal.Notify(ch, syscall.SIGINT, syscall.SIGTERM, os.Interrupt, os.Kill)
 	// 准备入参
@@ -25,7 +25,7 @@ func main() {
 	}
 	jsonBytes, err := json.Marshal(user)
 	if err != nil {
-		loggers.Printf("序列化用户失败！err:%+v", err)
+		logger.DefaultLogger.Errorf("序列化用户失败！err:%+v", err)
 		return
 	}
 
@@ -34,7 +34,7 @@ func main() {
 	// 创建请求
 	request, err := http.NewRequest("POST", "http://192.168.100.103:9090/api/v1/query_range?query=2022-10-18&start=17:58:00Z\\&end=%sT%s:15Z\\&step=30d", bytes.NewReader(jsonBytes))
 	if err != nil {
-		loggers.Printf("创建请求失败！err:%+v", err)
+		logger.DefaultLogger.Errorf("创建请求失败！err:%+v", err)
 		return
 	}
 	// 设置请求头
@@ -51,9 +51,9 @@ func main() {
 	defer resp.Body.Close()
 	body, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
-		loggers.Printf("读取Body失败 error: %+v", err)
+		logger.DefaultLogger.Errorf("读取Body失败 error: %+v", err)
 		return
 	}
-	loggers.Println(string(body))
+	logger.DefaultLogger.Errorf(string(body))
 
 }

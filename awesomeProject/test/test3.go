@@ -1,12 +1,28 @@
 package main
 
 import (
+	"awesomeProject/logger"
 	"fmt"
 )
 
+func YiDisk(str string) error {
+	if str == "" {
+		return fmt.Errorf("this is %+v a erros", str)
+	} else {
+		return nil
+	}
+
+}
+
+func UU() {
+	fmt.Println("testx")
+}
+
 func main() {
-	var data [][]string
-	data = [][]string{{"test", "cheyunhua"}, {"ok", "ints"}}
-	fmt.Println(data[0][0])
+	if err := YiDisk(""); err != nil {
+		logger.DefaultLogger.Errorf(" %v", err)
+	}
+
+	UU()
 
 }

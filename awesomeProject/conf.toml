@@ -1,11 +1,11 @@
 [Mail]
 Host = "smtp.exmail.qq.com"
-User = "xxx@sicpay.com"
+User = "cheyunhua@sicpay.com"
 Port = 465
-From = "xxx@sicpay.com"
-Pwd = "xxx@123"
-To = "xxx@139.com"
-RTo = "xxx@qq.com"
+From = "cheyunhua@sicpay.com"
+Pwd = "Cyh1123@123"
+To = "15816818232@139.com"
+RTo = "272014461@qq.com"
 IsSsl = true
 [Job]
 JobName = ["Centos6-host","host-node"]
